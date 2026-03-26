@@ -20,5 +20,50 @@ namespace WpfApp1
         {
             InitializeComponent();
         }
+
+        private void AllRecords(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddRecord(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ExportRecord(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AllManufactures(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddManufacture(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AllSupples(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddSupple(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AllStates(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AddState(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

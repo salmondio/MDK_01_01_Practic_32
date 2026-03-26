@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 
 namespace WpfApp1.Pages.Records
 {
+
     /// <summary>
     /// Логика взаимодействия для Main.xaml
     /// </summary>

@@ -20,9 +20,13 @@ namespace WpfApp1.Pages.State
     /// </summary>
     public partial class Main : Page
     {
+        public IEnumerable<Classes.State> AllStates = Classes.State.AllState();
         public Main()
         {
             InitializeComponent();
+
+            foreach(var State in AllStates)
+                StateParent.Children.Add(new Elements.State(State, this));
         }
     }
 }

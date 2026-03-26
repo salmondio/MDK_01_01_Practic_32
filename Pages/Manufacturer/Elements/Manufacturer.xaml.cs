@@ -13,20 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace WpfApp1.Pages.Manufacturer
+namespace WpfApp1.Pages.Manufacturer.Elements
 {
     /// <summary>
-    /// Логика взаимодействия для Main.xaml
+    /// Логика взаимодействия для Manufacturer.xaml
     /// </summary>
-    public partial class Main : Page
+    public partial class Manufacturer : UserControl
     {
-        public IEnumerable<Classes.Manufacturer> AllManufacturers = Classes.Manufacturer.AllManufacturers();
-        public Main()
+        public Manufacturer()
         {
             InitializeComponent();
-
-            foreach(Classes.Manufacturer manufacturer in AllManufacturers)
-                ManufacturerParent.Children.Add(new Elements.Manufacturer(manufacturer, this));
         }
     }
 }

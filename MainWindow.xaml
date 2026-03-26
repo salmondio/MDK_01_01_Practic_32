@@ -8,6 +8,7 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Menu>
+            
             <MenuItem Header="Пластинки">
                 <MenuItem Header="Список" Click="AllRecords"/>
                 <MenuItem Header="Добавить" Click="AddRecord"/>

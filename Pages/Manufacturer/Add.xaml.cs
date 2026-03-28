@@ -202,5 +202,4 @@ namespace WpfApp1.Pages.Manufacturer
             e.Handled = !(Char.IsDigit(e.Text, 0));
         }
     }
-    }
 }

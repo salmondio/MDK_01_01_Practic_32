@@ -10,21 +10,21 @@
         <Menu>
             
             <MenuItem Header="Пластинки">
-                <MenuItem Header="Список" Click="AllRecords"/>
-                <MenuItem Header="Добавить" Click="AddRecord"/>
+                <MenuItem Header="Список" Click="OpenRecordList"/>
+                <MenuItem Header="Добавить" Click="OpenRecordAdd"/>
                 <MenuItem Header="Експортировать" Click="ExportRecord"/>
             </MenuItem>
             <MenuItem Header="Поставщики">
-                <MenuItem Header="Список" Click="AllManufactures"/>
-                <MenuItem Header="Добавить" Click="AddManufacture"/>
+                <MenuItem Header="Список" Click="OpenManufacrurersList"/>
+                <MenuItem Header="Добавить" Click="OpenManufacrurersAdd"/>
             </MenuItem>
             <MenuItem Header="Поставки">
-                <MenuItem Header="Список" Click="AllSupples"/>
-                <MenuItem Header="Добавить" Click="AddSupple"/>
+                <MenuItem Header="Список" Click="OpenSupplyList"/>
+                <MenuItem Header="Добавить" Click="OpenSupplyAdd"/>
             </MenuItem>
             <MenuItem Header="Состояния">
-                <MenuItem Header="Список" Click="AllStates"/>
-                <MenuItem Header="Добавить" Click="AddState"/>
+                <MenuItem Header="Список" Click="OpenStateList"/>
+                <MenuItem Header="Добавить" Click="OpenStateAdd"/>
             </MenuItem>
         </Menu>
 

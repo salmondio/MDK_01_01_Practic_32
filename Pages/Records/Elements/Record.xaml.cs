@@ -97,7 +97,7 @@ namespace WpfApp1.Pages.Records.Elements
             if (MessageBox.Show($"Удалить виниловую пластинку: {this.record.Name}?", "Уведомление", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
             {
                 // Получаем поставки
-                IEnumerable<Classes.Supply> AllSupply = Classes.Supply.AllSupplies();
+                IEnumerable<Classes.Supply> AllSupply = Classes.Supply.AllSupples();
 
                 // Если среди поставок есть наша пластинка
                 if (AllSupply.Where(x => x.IdRecord == record.Id).Count() > 0)

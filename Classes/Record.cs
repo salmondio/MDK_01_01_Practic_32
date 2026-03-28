@@ -1,9 +1,11 @@
-﻿using System;
+﻿using OfficeOpenXml;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace WpfApp1.Classes
 {
@@ -125,8 +127,50 @@ namespace WpfApp1.Classes
             }
         }
 
-        /// <summary> Удаление записи о пластинке </summary>
-        public void Delete()
+        
+
+        public static void Export(string fileName, IEnumerable<Record> records)
+        {
+            using (ExcelPackage package = new ExcelPackage())
+            {
+                // Создаем рабочий лист
+                ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Пластинки");
+
+                // Заголовки столбцов
+                worksheet.Cells["A1"].Value = "ID";
+                worksheet.Cells["B1"].Value = "Наименование";
+                worksheet.Cells["C1"].Value = "Год выпуска";
+                worksheet.Cells["D1"].Value = "Формат записи";
+                worksheet.Cells["E1"].Value = "Размер пластинки";
+                worksheet.Cells["F1"].Value = "Код производителя";
+                worksheet.Cells["G1"].Value = "Стоимость";
+                worksheet.Cells["H1"].Value = "Состояние";
+                worksheet.Cells["I1"].Value = "Заметки";
+
+                // Заполняем данными
+                int rowNum = 2;
+                foreach (var record in records)
+                {
+                    worksheet.Cells[$"A{rowNum}"].Value = record.Id;
+                    worksheet.Cells[$"B{rowNum}"].Value = record.Name;
+                    worksheet.Cells[$"C{rowNum}"].Value = record.Year;
+                    worksheet.Cells[$"D{rowNum}"].Value = record.Format;
+                    worksheet.Cells[$"E{rowNum}"].Value = record.Size;
+                    worksheet.Cells[$"F{rowNum}"].Value = record.IdManufacturer;
+                    worksheet.Cells[$"G{rowNum}"].Value = record.Price;
+                    worksheet.Cells[$"H{rowNum}"].Value = record.IdState;
+                    worksheet.Cells[$"I{rowNum}"].Value = record.Description;
+
+                    rowNum++;
+                }
+
+                // Сохраняем файл
+                File.WriteAllBytes(fileName, package.GetAsByteArray());
+            }
+        }
+
+    /// <summary> Удаление записи о пластинке </summary>
+    public void Delete()
         {
             // Выполняем SQL-запрос на удаление данных в БД
             Classes.DBConnection.Connection($"DELETE FROM [dbo].[Record] WHERE [Id] = {this.Id};");

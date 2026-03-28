@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using Microsoft.Win32;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -16,54 +17,91 @@ namespace WpfApp1
     /// </summary>
     public partial class MainWindow : Window
     {
+        /// <summary> Переменная которая хранит в себе класс MainWindows, для того чтобы ... </summary>
+        public static MainWindow mainWindow;
+        public Pages.Records.Main mainRecords = new Pages.Records.Main();
+
         public MainWindow()
         {
+            // Инициализируем компоненты на сцене, для того чтобы обращаться к ним
             InitializeComponent();
+
+            // Запоминаем MainWindows, указывая себя
+            MainWindow.mainWindow = this;
+
+            // Вызываем метод открытия страниц, и говорим что необходимо открыть страницу Main
+            OpenPage(mainRecords);
         }
 
-        private void AllRecords(object sender, RoutedEventArgs e)
+        /// <summary> Метод открытия страниц </summary>
+        public void OpenPage(Page pages)
         {
-
+            // Обращаемся к элементу Frame, и открываем указанную страницу
+            frame.Navigate(pages);
         }
 
-        private void AddRecord(object sender, RoutedEventArgs e)
+        /// <summary> Метод открытия страницы с виниловыми пластинками </summary>
+        private void OpenRecordList(object sender, RoutedEventArgs e)
         {
-
+            // Вызываем метод открытия страницы с виниловыми пластинками
+            OpenPage(mainRecords);
+            mainRecords.LoadRecord();
         }
 
+        /// <summary> Метод открытия страницы для добавления виниловых пластинок </summary>
+        private void OpenRecordAdd(object sender, RoutedEventArgs e) =>
+            // Вызываем метод открытия страницы для добавления виниловых пластинок
+            OpenPage(new Pages.Records.Add());
+
+        /// <summary> Метод открытия страницы с поставщиками </summary>
+        private void OpenManufacrurersList(object sender, RoutedEventArgs e) =>
+            // Вызываем метод открытия страницы с поставщиками
+            OpenPage(new Pages.Manufacturer.Main());
+
+        /// <summary> Метод открытия страницы для добавления поставщиков </summary>
+        private void OpenManufacrurersAdd(object sender, RoutedEventArgs e) =>
+            // Вызываем метод открытия страницы для добавления поставщиков
+            OpenPage(new Pages.Manufacturer.Add());
+
+        /// <summary> Метод открытия страницы для с поступлениями </summary>
+        private void OpenSupplyList(object sender, RoutedEventArgs e) =>
+            // Вызываем метод открытия страницы для отображения поставок
+            OpenPage(new Pages.Supply.Main());
+
+        /// <summary> Метод открытия страницы для добавления поставок </summary>
+        private void OpenSupplyAdd(object sender, RoutedEventArgs e) =>
+            // Вызываем метод открытия страницы для добавления поставок
+            OpenPage(new Pages.Supply.Add());
+
+        /// <summary> Метод открытия страницы со списком состояний </summary>
+        private void OpenStateList(object sender, RoutedEventArgs e) =>
+            OpenPage(new Pages.State.Main());
+
+        /// <summary> Метод открытия страницы добавления состояния </summary>
+        private void OpenStateAdd(object sender, RoutedEventArgs e) =>
+            OpenPage(new Pages.State.Add());
+
+        /// <summary> Метод экспорта виниловых пластинок </summary>
         private void ExportRecord(object sender, RoutedEventArgs e)
         {
+            // Создаём диалог сохранения
+            SaveFileDialog saveFileDialog = new SaveFileDialog();
 
-        }
+            // Указываем какой формат будем сохранять
+            saveFileDialog.Filter = "Excel (*.xlsx)|*.xlsx";
 
-        private void AllManufactures(object sender, RoutedEventArgs e)
-        {
+            // Указываем что необходимо восстановить путь до файла при повторном открытии
+            saveFileDialog.RestoreDirectory = true;
 
-        }
+            // Открываем файловый диалог
+            saveFileDialog.ShowDialog();
 
-        private void AddManufacture(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AllSupples(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddSupple(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AllStates(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void AddState(object sender, RoutedEventArgs e)
-        {
-
+            // Если имя файла не равно пустоте
+            if (saveFileDialog.FileName != "")
+            {
+                // Вызываем метод создания Excel документа
+                Classes.Record.Export(saveFileDialog.FileName, mainRecords.searchRecords);
+            }
         }
     }
 }

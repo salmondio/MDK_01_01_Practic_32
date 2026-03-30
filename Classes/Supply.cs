@@ -40,7 +40,7 @@ namespace WpfApp1.Classes
                 DateTime dt = new DateTime();
 
                 // Конвертируем дату из БД
-                DateTime.TryParse(row.ToString(), out dt);
+                DateTime.TryParse(row[3].ToString(), out dt);
 
                 // Записываем полученный результат в переменную
                 string CorrectDate = dt.Year + "-" + dt.Month + "-" + dt.Day;
@@ -48,11 +48,11 @@ namespace WpfApp1.Classes
                 // Заполняем список, указывая данные
                 supples.Add(new Supply()
                 {
-                    Id = Convert.ToInt32(row),
-                    IdManufacturer = Convert.ToInt32(row),
-                    IdRecord = Convert.ToInt32(row),
+                    Id = Convert.ToInt32(row[0]),
+                    IdManufacturer = Convert.ToInt32(row[1]),
+                    IdRecord = Convert.ToInt32(row[2]),
                     DateDelivery = CorrectDate,
-                    Count = Convert.ToInt32(row)
+                    Count = Convert.ToInt32(row[4])
                 });
             }
 

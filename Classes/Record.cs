@@ -52,15 +52,15 @@ namespace WpfApp1.Classes
             {
                 records.Add(new Record()
                 {
-                    Id = Convert.ToInt32(row),
-                    Name = row.ToString(),
-                    Year = Convert.ToInt32(row),
-                    Format = Convert.ToInt32(row),
-                    Size = Convert.ToInt32(row),
-                    IdManufacturer = Convert.ToInt32(row),
-                    Price = float.Parse(row.ToString()),
-                    IdState = Convert.ToInt32(row),
-                    Description = row.ToString()
+                    Id = Convert.ToInt32(row[0]),
+                    Name = row[1].ToString(),
+                    Year = Convert.ToInt32(row[2]),
+                    Format = Convert.ToInt32(row[3]),
+                    Size = Convert.ToInt32(row[4]),
+                    IdManufacturer = Convert.ToInt32(row[5]),
+                    Price = float.Parse(row[6].ToString()),
+                    IdState = Convert.ToInt32(row[7]),
+                    Description = row[8].ToString()
                 });
             }
 
